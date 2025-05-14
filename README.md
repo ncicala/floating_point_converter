@@ -5,3 +5,5 @@ A Program that implements floating point conversion. user can convert a decimal 
 ## Notes
 * Due to the nature of floating point numbers, very large floating point numbers cannot be translated into decimal.
 * Built on new LC-3 simulator app
+* You have to type in the number first then add the negative.
+* Last ten numbers (fractional part) are backwards

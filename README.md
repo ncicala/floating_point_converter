@@ -1,6 +1,6 @@
 # Floating Point Converter
 
-A Program that implements two-way floating point conversion. user can choose between converting a decimal number to a floating point number or floating to decimal.
+A Program that implements floating point conversion. user can choose between convert a decimal number to a floating point number 16 bit Floating point number is 1 for sign, 5 for exponent, 10 for mantissa
 
 ## Notes
 * Due to the nature of floating point numbers, very large floating point numbers cannot be translated into decimal.

@@ -32,6 +32,8 @@
         ;Calculate the floating point number
         JSR Calculate
         ;Return the full binary set
+        AND R1, R1, #0 ;R1 = R2
+        ADD R1, R1, R2
         JSR Output
         
         HALT
@@ -128,7 +130,6 @@ InputRec
 
         ;Recursive addition
         JSR InputRec
-        
 Enter      
         
         ;Restore Registers via stack
@@ -136,9 +137,10 @@ Enter
         ADD R6, R6, #1
 
         RET
-Minus
-        NOT R1, R1
-        ADD R1, R1, #1
+        
+        Minus
+        NOT R5, R5
+        ADD R5, R5, #1
         BRnzp Enter
 ;***************************************************************
 AsToDec  .FILL xFFD0 ; -48 use to change ASCII char to decimal
@@ -156,6 +158,7 @@ AsToDec  .FILL xFFD0 ; -48 use to change ASCII char to decimal
 ;**************************************************************
 Calculate
         ST R7,SaveR7C
+        AND R2,R2,#0
         AND R7,R7,#0
         ;First, check if negative
         ADD R1, R1, #0
@@ -187,12 +190,19 @@ lexp    ADD R3, R3, R3;Rebuild value
         BRp lexp
         
         LD R5, Floatexp
-        ADD R4, R5, R4 ;Power = 127 - R2
-        AND R3, R3, #0 ;Set Counter to 10
+        ADD R6, R5, R6 ;Power = 15 - R6
+        AND R3, R3, #0 ;Set Counter to 5
+        ADD R3, R3, #5
+        
+Move1   ADD R2, R2, R2 ; Move five times
+        ADD R3, R3, #-1
+        BRp Move1
+        ADD R2, R2, R6 ; add power to line
         ADD R3, R3, #10
         
-        
-        ;Then remainder
+Move2   ADD R2, R2, R2 ; Move five more times
+        ADD R3, R3, #-1
+        BRp Move2
         
         ADD R4, R4, R7;R4
         ;R5

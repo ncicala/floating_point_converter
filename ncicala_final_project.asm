@@ -31,14 +31,17 @@
         JSR Input
         ;Calculate the floating point number
         JSR Calculate
-        ;Return the full binary set
+        ;Return the full binary set and find fraction
         AND R1, R1, #0 ;R1 = R2
         ADD R1, R1, R2
+        
+        
+        ADD R1, R1, R6
         JSR Output
         
         HALT
         
-        ;************************Setup*****************************
+;************************Setup*****************************
 ;This subroutine cleans up used registers.
 ;
 ;**************************************************************
@@ -200,12 +203,12 @@ Move1   ADD R2, R2, R2 ; Move five times
         ADD R2, R2, R6 ; add power to line
         ADD R3, R3, #10
         
-Move2   ADD R2, R2, R2 ; Move five more times
+Move2   ADD R2, R2, R2 ; Move ten more times
         ADD R3, R3, #-1
         BRp Move2
         
         ADD R4, R4, R7;R4
-        ;R5
+        NOT R6, R4
         
         LD R7,SaveR7C
         RET

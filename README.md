@@ -4,3 +4,4 @@ A Program that implements floating point conversion. user can convert a decimal 
 
 ## Notes
 * Due to the nature of floating point numbers, very large floating point numbers cannot be translated into decimal.
+* Built on new LC-3 simulator app
